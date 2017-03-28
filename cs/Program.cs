@@ -9,16 +9,19 @@ namespace Microsoft.Garage.Codess.Samples
 
     public class Program
     {
+        private const int DEFAULT_GRID_MAX_WIDTH = 30;
+        private const int DEFAULT_GRID_MAX_HEIGHT = 30;
+
         // Constrains the width of the playing field
         private static int GridWidth
         {
-            get { return Math.Min(Console.WindowWidth, 30); }
+            get { return Math.Min(Console.WindowWidth, DEFAULT_GRID_MAX_WIDTH); }
         }
 
         // Constrains the height of the playing field
         private static int GridHeight
         {
-            get { return Math.Min(Console.WindowHeight, 30); }
+            get { return Math.Min(Console.WindowHeight, DEFAULT_GRID_MAX_HEIGHT); }
         }
 
         // Create a seed generation. For now, just a simple blinker
