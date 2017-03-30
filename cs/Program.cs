@@ -24,19 +24,45 @@ namespace Microsoft.Garage.Codess.Samples
             get { return Math.Min(Console.WindowHeight, DEFAULT_GRID_MAX_HEIGHT); }
         }
 
-        // Create a seed generation. For now, just a simple blinker
-        // somewhere around the center of the grid.
-        private static Generation BuildSeedGeneration()
+
+        // Create a seed generation. Either use the one named on the command line,
+        // or default to something reasonable.
+        private static Generation BuildSeedGeneration(string [] args)
+        {
+            if (args.Length == 0)
+            {
+                return BuildSeedGeneration("blinker");
+            }
+
+            return BuildSeedGeneration(args[0]);
+        }
+
+        // Create a specific canned seed generation.
+        private static Generation BuildSeedGeneration(string whichOne)
         {
             int x = GridWidth / 2;
             int y = GridHeight / 2;
 
-            return new Generation()
+            switch (whichOne)
             {
-                new Cell(x, y - 1),
-                new Cell(x, y),
-                new Cell(x, y + 1)
-            };
+                case "block":
+                    return new Generation()
+                    {
+                        new Cell(x, y),
+                        new Cell(x + 1, y),
+                        new Cell(x, y + 1),
+                        new Cell(x + 1, y + 1)
+                    };
+                    
+                case "blinker":
+                default:
+                    return new Generation()
+                    {
+                        new Cell(x, y - 1),
+                        new Cell(x, y),
+                        new Cell(x, y + 1)
+                    };
+            }
         }
 
         private static void Render(Generation g)
@@ -141,7 +167,7 @@ namespace Microsoft.Garage.Codess.Samples
         {
             // Play the game of life. Get the initial generation, and draw each successive
             // generation that evolves from it.
-            Generation currentGeneration = BuildSeedGeneration();
+            Generation currentGeneration = BuildSeedGeneration(args);
             for (;;)
             {
                 Render(currentGeneration);
