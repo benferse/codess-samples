@@ -27,11 +27,11 @@ namespace Microsoft.Garage.Codess.Samples
 
         // Create a seed generation. Either use the one named on the command line,
         // or default to something reasonable.
-        private static Generation BuildSeedGeneration(string [] args)
+        private static Generation BuildSeedGeneration(string[] args)
         {
             if (args.Length == 0)
             {
-                return BuildSeedGeneration("blinker");
+                return BuildSeedGeneration("");
             }
 
             return BuildSeedGeneration(args[0]);
@@ -53,14 +53,57 @@ namespace Microsoft.Garage.Codess.Samples
                         new Cell(x, y + 1),
                         new Cell(x + 1, y + 1)
                     };
-                    
+
+                case "toad":
+                    return new Generation()
+                    {
+                        new Cell(x - 1, y),
+                        new Cell(x, y),
+                        new Cell(x + 1, y),
+                        new Cell(x - 2, y + 1),
+                        new Cell(x - 1, y + 1),
+                        new Cell(x, y + 1)
+                    };
+
                 case "blinker":
-                default:
                     return new Generation()
                     {
                         new Cell(x, y - 1),
                         new Cell(x, y),
                         new Cell(x, y + 1)
+                    };
+
+                case "penta":
+                default:
+                    return new Generation()
+                    {
+                        new Cell(x - 1, y - 3),
+                        new Cell(x, y - 3),
+                        new Cell(x + 1, y - 3),
+
+                        new Cell(x - 1, y - 2),
+                        //new Cell(x, y - 2),
+                        new Cell(x + 1, y - 2),
+
+                        new Cell(x - 1, y - 1),
+                        new Cell(x, y - 1),
+                        new Cell(x + 1, y - 1),
+
+                        new Cell(x - 1, y),
+                        new Cell(x, y),
+                        new Cell(x + 1, y),
+
+                        new Cell(x - 1, y + 1),
+                        new Cell(x, y - 1),
+                        new Cell(x + 1, y + 1),
+
+                        new Cell(x - 1, y + 2),
+                        //new Cell(x, y - 2),
+                        new Cell(x + 1, y + 2),
+
+                        new Cell(x - 1, y + 3),
+                        new Cell(x, y + 3),
+                        new Cell(x + 1, y + 3),
                     };
             }
         }
