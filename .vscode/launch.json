@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceRoot}\\cs\\bin\\Debug\\netcoreapp1.1\\cs.dll",
+            "program": "${workspaceRoot}\\cs\\bin\\Debug\\netcoreapp1.1\\codess-cs.dll",
             "args": [],
             "cwd": "${workspaceRoot}\\cs",
             "console": "internalConsole",
