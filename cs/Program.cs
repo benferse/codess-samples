@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 
 namespace Microsoft.Garage.Codess.Samples
 {
@@ -215,6 +216,7 @@ namespace Microsoft.Garage.Codess.Samples
             {
                 Render(currentGeneration);
                 currentGeneration = Evolve(currentGeneration);
+                Thread.Sleep(500);
             }
         }
     }
